@@ -1,32 +1,18 @@
-var name = "Max";
-var age = 24;
-var hasHobbies = true;
+//Arrays
 
-var showUser = ( showName, showAge, showHobby) => {
-  return (
-    "name is " +
-    showName +
-    ", age is " +
-    showAge +
-    ", has hobby " +
-    showHobby
-  );
-}
+const hobbies = ['apple', 'oranges', '', 'mango', '', 'lemon'];
 
-console.log(showUser(name, age, hasHobbies));
+// for(let hobby of hobbies) {
+//     console.log(hobby);
+// }
+const newHobbies = hobbies.map((hobby) => {return hobby === '' ? 'empty string' : hobby});
 
-//Product of two
-var generateResult = (num1, num2) => {
-    console.log("answer = " + num1 * num2);
-}
+console.log(newHobbies)
 
-generateResult(2,5);
+const obj1 = {'key1': 1 , 'key2' : 2}
 
-//studentObj
-const studentObj = {
-    name: "max",
-    age: 24,
-    class: 12
-}
+const obj2 = { ...obj1, key1: 1000}
 
-console.log(studentObj);
+console.log(obj1)
+
+console.log(obj2)
