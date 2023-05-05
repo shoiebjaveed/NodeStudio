@@ -24,3 +24,21 @@ const toArray = (...args) => {
 }
 
 console.log(toArray(1,3,4,5,6,6))
+
+//Destructuring
+const person = {
+    name: "Max",
+    age: 24,
+    greet() {
+        console.log("Hi, I'm " + this.name)
+    }
+}
+
+const sayHi = ({ greet }) => {
+    console.log(greet())
+}
+
+sayHi(person)
+
+const {name , age} = person;
+console.log(name, age)
