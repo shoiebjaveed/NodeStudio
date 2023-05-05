@@ -1,4 +1,3 @@
-
 const http = require('http'); //importing core module of node
 
 // const reqListener = (req, res) => {
@@ -41,5 +40,3 @@ const server = http.createServer((req, res) => { //
 });
 
 server.listen(4000); //listens to the port we enter
-
-
