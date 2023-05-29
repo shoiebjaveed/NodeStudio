@@ -1,6 +1,6 @@
 core modules of node
 *http - helps in launching a server, send requests
 *https - helps in launching a SSL server 
-*fs - 
+*fs -  helps in file sync
 *path -
 *os -
