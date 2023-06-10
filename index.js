@@ -1,22 +1,23 @@
 // const http = require("http"); //importing core module of node --beacuse we are using app.listen() it is no longer require
 
 const express = require('express'); //importing express
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use((req, res, next) => {
-    console.log("In middleware");
-    next(); //Allows the request to continue to the next middleware in line
+app.use(bodyParser.urlencoded({extended: false}))
+
+app.use('/add-user', (req, res) => {
+    res.send('<form action="/user" method="POST"><input type="text" name="title" /><input type="number" name="age" /><button type="submit">submit</button></form>')
 })
 
-app.use((req, res, next) => {
-    console.log("In second middleware");
-    res.send("<h1>Hello from express</h1>")
+app.use('/user',(req, res) => {
+    console.log(req.body);
+    res.redirect('/');
 })
 
-// const reqListener = (req, res) => {
-// } this an example to create a request listner
+app.use('/', (req, res) => {
+    res.send('<h2>welcome to express</h2>')
+})
 
-// const server = http.createServer(app);
-// server.listen(4000); //listens to the port we enter
 app.listen(4000);
