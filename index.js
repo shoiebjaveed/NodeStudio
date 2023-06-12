@@ -1,23 +1,18 @@
-// const http = require("http"); //importing core module of node --beacuse we are using app.listen() it is no longer require
-
-const express = require('express'); //importing express
+const express = require('express');
 const bodyParser = require('body-parser');
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('/add-user', (req, res) => {
-    res.send('<form action="/user" method="POST"><input type="text" name="title" /><input type="number" name="age" /><button type="submit">submit</button></form>')
-})
+app.use('/admin',adminRoutes);
+app.use(shopRoutes);
 
-app.use('/user',(req, res) => {
-    console.log(req.body);
-    res.redirect('/');
-})
-
-app.use('/', (req, res) => {
-    res.send('<h2>welcome to express</h2>')
+app.use((req, res, next) => {
+    res.status(404).send("<h1>404! Page not Found</h1>")
 })
 
 app.listen(4000);
