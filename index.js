@@ -1,22 +1,21 @@
-// const http = require("http"); //importing core module of node --beacuse we are using app.listen() it is no longer require
-
-const express = require('express'); //importing express
-
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
 
-app.use((req, res, next) => {
-    console.log("In middleware");
-    next(); //Allows the request to continue to the next middleware in line
-})
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+const contactRoutes = require('./routes/contact');
+const root = require('./util/path');
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+app.use(contactRoutes)
+app.use(express.static(path.join(root, "public")))
 
 app.use((req, res, next) => {
-    console.log("In second middleware");
-    res.send("<h1>Hello from express</h1>")
-})
+    res.status(404).sendFile(path.join(__dirname, 'views', 'Error.html'));
+});
 
-// const reqListener = (req, res) => {
-// } this an example to create a request listner
-
-// const server = http.createServer(app);
-// server.listen(4000); //listens to the port we enter
 app.listen(4000);
